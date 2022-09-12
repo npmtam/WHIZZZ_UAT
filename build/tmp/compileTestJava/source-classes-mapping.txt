@@ -1,0 +1,6 @@
+testCases/testthu.java
+ testCases.testthu
+testCases/discoverPage.java
+ testCases.discoverPage
+testCases/searchPage.java
+ testCases.searchPage

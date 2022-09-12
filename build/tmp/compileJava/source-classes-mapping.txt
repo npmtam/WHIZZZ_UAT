@@ -1,0 +1,16 @@
+commons/AbstractTest.java
+ commons.AbstractTest
+commons/Constants.java
+ commons.Constants
+pageUI/DiscoverUI.java
+ pageUI.DiscoverUI
+pageUI/LoginUI.java
+ pageUI.LoginUI
+pageObject/LoginPage.java
+ pageObject.LoginPage
+commons/AbstractPage.java
+ commons.AbstractPage
+pageObject/DiscoverPage.java
+ pageObject.DiscoverPage
+commons/PageGeneratorManager.java
+ commons.PageGeneratorManager
