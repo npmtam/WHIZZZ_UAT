@@ -28,8 +28,6 @@ public class searchPage extends AbstractTest {
         abstractPage = new AbstractPage(driver);
         driver.get(Constants.EMMA_WHIZZZ_DEV);
         abstractPage.isElementDisplayed("//button");
-//        driver.manage().addCookie(new Cookie("accessToken", cookie));
-//        driver.navigate().refresh();
         loginPage = PageGeneratorManager.getLoginPage(driver);
         discoverPage = PageGeneratorManager.getDiscoverPage(driver);
         Faker faker = new Faker();
