@@ -67,7 +67,6 @@ public class searchPage extends AbstractTest {
         discoverPage.assignContributor("Minh Tam Nguyen");
         log.info("TC02 - Verify Toast Message");
         verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CONTRIBUTOR_UPDATE);
-        System.out.println(discoverPage.getToastMessage());
         log.info("TC02 - Add tag");
         discoverPage.addTag(tag);
 
@@ -77,13 +76,11 @@ public class searchPage extends AbstractTest {
         verifyEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
         verifyEquals(discoverPage.getNameOfPOC(), nameOfPOC);
         verifyEquals(discoverPage.getTagNameDetailsPage(), tag);
-        verifyTrue(discoverPage.getLastUpdate().contains(discoverPage.getCurrentDate()));
 
         log.info("TC02 - Click to publish the card");
         discoverPage.clickToPublishButton();
         log.info("TC02 - Verify toast message");
         verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CARD_CREATED);
-        System.out.println(discoverPage.getToastMessage());
         log.info("TC02 - Verify components in the card published");
         Assert.assertEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
         Assert.assertEquals(discoverPage.getNameOfPOC(), nameOfPOC);

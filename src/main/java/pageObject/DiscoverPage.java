@@ -101,7 +101,7 @@ public class DiscoverPage extends AbstractPage {
     }
 
     public String getToastMessage(){
-        sleepInSeconds(1);
+        sleepInSeconds(2);
         waitToElementVisible(DiscoverUI.TOAST_MESSAGE_CONTENT);
         return getTextElement(DiscoverUI.TOAST_MESSAGE_CONTENT);
     }
