@@ -15,11 +15,10 @@ import pageObject.LoginPage;
 
 public class searchPage extends AbstractTest {
     private WebDriver driver;
-    private String cookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMWE2OGE3My1mOWRhLTRlMTUtOGJmMy00ODc1MWQ1MGQ1YzkiLCJlbWFpbCI6Im1pbmh0YW0ubmd1eWVuQGVtbWEtc2xlZXAuY29tIiwic3ViIjoxMywiaWF0IjoxNjUyOTUxODI5LCJleHAiOjE2NTU1NDM4Mjl9.Dbo6uKsyfeS7PI9xUc7XxmAu0IyKSS61gpPX7UUV6EA";
     private AbstractPage abstractPage;
     private LoginPage loginPage;
     private DiscoverPage discoverPage;
-    private String cardName, cardDescription, nameOfPOC, tag;
+    private String cardName, cardDescription, tag;
 
     @Parameters("browser")
     @BeforeTest
@@ -33,7 +32,6 @@ public class searchPage extends AbstractTest {
         Faker faker = new Faker();
         cardName = faker.book().title();
         cardDescription = faker.book().publisher();
-        nameOfPOC = "Minh Tam Nguyen";
         tag = "selenium";
 
     }
@@ -59,10 +57,14 @@ public class searchPage extends AbstractTest {
         log.info("TC02 - Create a new card");
         discoverPage.clickToCreateCard();
         discoverPage.createANewCard(cardName, cardDescription);
+        log.info("TC02 - Input link preview");
+        discoverPage.inputLinkPreviewToDescription(Constants.LINK_PREVIEW);
+        log.info("TC02 - Select review interval");
+        discoverPage.selectReviewInterval("Every month");
         log.info("TC02 - Assign POC");
-        discoverPage.assignPOC(nameOfPOC);
+        discoverPage.assignPOC(Constants.POC_OR_CONTRIBUTOR_NAME);
         log.info("TC02 - Assign contributor");
-        discoverPage.assignContributor("Minh Tam Nguyen");
+        discoverPage.assignContributor(Constants.POC_OR_CONTRIBUTOR_NAME);
         log.info("TC02 - Verify Toast Message");
         verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CONTRIBUTOR_UPDATE);
         log.info("TC02 - Add tag");
@@ -72,8 +74,9 @@ public class searchPage extends AbstractTest {
         discoverPage.previewTheCard();
         log.info("TC02 - Verify components in the card preview");
         verifyEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
-        verifyEquals(discoverPage.getNameOfPOC(), nameOfPOC);
+        verifyEquals(discoverPage.getNameOfPOC(), Constants.POC_OR_CONTRIBUTOR_NAME);
         verifyEquals(discoverPage.getTagNameDetailsPage(), tag);
+        verifyTrue(discoverPage.isLinkPreviewDisplayed());
 
         log.info("TC02 - Click to publish the card");
         discoverPage.clickToPublishButton();
@@ -81,8 +84,45 @@ public class searchPage extends AbstractTest {
         verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CARD_CREATED);
         log.info("TC02 - Verify components in the card published");
         Assert.assertEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
-        Assert.assertEquals(discoverPage.getNameOfPOC(), nameOfPOC);
+        Assert.assertEquals(discoverPage.getNameOfPOC(), Constants.POC_OR_CONTRIBUTOR_NAME);
         Assert.assertEquals(discoverPage.getTagNameDetailsPage(), tag);
+        Assert.assertTrue(discoverPage.getLastUpdate().contains(discoverPage.getCurrentDate()));
+        Assert.assertTrue(discoverPage.isLinkPreviewDisplayed());
+    }
+
+    @Test
+    public void TC03_Create_A_Board(){
+        discoverPage.backToHomePage();
+        log.info("TC03 - Create a new board");
+        discoverPage.clickToCreateBoard();
+        log.info("TC03 - Input board title and board description");
+        discoverPage.createANewCard(cardName, cardDescription);
+        log.info("TC03 - Input link preview");
+        discoverPage.inputLinkPreviewToDescription(Constants.LINK_PREVIEW);
+        log.info("TC03 - Assign contributor");
+        discoverPage.assignContributor(Constants.POC_OR_CONTRIBUTOR_NAME);
+        log.info("TC03 - Verify Toast Message");
+        verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CONTRIBUTOR_UPDATE);
+        log.info("TC03 - Add cards to board");
+        discoverPage.clickToAddCardsButton();
+        discoverPage.selectFirstThreeCards();
+        discoverPage.clickToAddCardSelected();
+
+        log.info("TC03 - Publish board");
+        discoverPage.clickToPublishButton();
+
+        log.info("TC03 - Verify the selected cards added to board");
+        Assert.assertEquals(discoverPage.getTitleFirstCardSelected(), Constants.FIRST_CARD_TITLE_SELECTED);
+        System.out.println(discoverPage.getTitleSecondCardSelected());
+        Assert.assertEquals(discoverPage.getTitleSecondCardSelected(), Constants.SENCOND_CARD_TITLE_SELECTED);
+        System.out.println(discoverPage.getTitleSecondCardSelected());
+        Assert.assertEquals(discoverPage.getTitleThirdCardSelected(), Constants.THIRD_CARD_TITLE_SELECTED);
+        System.out.println(discoverPage.getTitleThirdCardSelected());
+        log.info("TC03 - Verify Toast Message");
+        verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_BOARD_CREATED);
+        log.info("TC03 - Verify board components");
+        verifyTrue(discoverPage.isLinkPreviewDisplayed());
+        Assert.assertEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
         Assert.assertTrue(discoverPage.getLastUpdate().contains(discoverPage.getCurrentDate()));
     }
 }

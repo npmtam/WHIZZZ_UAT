@@ -1,6 +1,0 @@
-testCases/discoverPage.java
- testCases.discoverPage
-testCases/testthu.java
- testCases.testthu
-testCases/searchPage.java
- testCases.searchPage

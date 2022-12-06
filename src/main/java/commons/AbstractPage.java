@@ -1,9 +1,6 @@
 package commons;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -102,6 +99,12 @@ public class AbstractPage {
         by = By.xpath(locator);
         waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public void waitToElementClickable(String locator){
+        by = By.xpath(locator);
+        waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        waitExplicit.until(ExpectedConditions.elementToBeClickable(by));
     }
 
     /**
@@ -212,10 +215,14 @@ public class AbstractPage {
     public void switchToWindowsByTitle(String title) {
         allWindows = driver.getWindowHandles();
         for (String runWindows : allWindows) {
-            driver.switchTo().window(runWindows);
-            String currentWindow = driver.getTitle();
-            if (currentWindow.equals(title)) {
-                break;
+            try {
+                driver.switchTo().window(runWindows);
+                String currentWindow = driver.getTitle();
+                if (currentWindow.equals(title)) {
+                    break;
+                }
+            } catch (NoSuchWindowException e){
+                System.out.println("NoSuchWindowException got handled");
             }
         }
     }

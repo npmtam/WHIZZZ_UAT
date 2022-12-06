@@ -1,6 +1,7 @@
 package pageObject;
 
 import commons.AbstractPage;
+import commons.Constants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,10 +9,14 @@ import pageUI.DiscoverUI;
 
 public class DiscoverPage extends AbstractPage {
     private WebDriver driver;
+    private String first,second,third;
 
     public DiscoverPage(WebDriver driver){
         super(driver);
         this.driver = driver;
+        first = "1";
+        second = "2";
+        third = "3";
     }
 
     public void clickToSurveyIfAvailable(){
@@ -41,6 +46,15 @@ public class DiscoverPage extends AbstractPage {
     public void clickToSubmitBtn(){
         waitToElementVisible(DiscoverUI.SUBMIT_BUTTON);
         clickToElement(DiscoverUI.SUBMIT_BUTTON);
+    }
+
+    public void selectReviewInterval(String option){
+        waitToElementVisible(DiscoverUI.REVIEW_INTERVAL_DROPDOWN);
+        try {
+            selectItemInDropdown(DiscoverUI.REVIEW_INTERVAL_DROPDOWN, DiscoverUI.REVIEW_INTERVAL_OPTIONS, option);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void assignPOC(String pocName){
@@ -114,5 +128,66 @@ public class DiscoverPage extends AbstractPage {
     public String getLastUpdate(){
         waitToElementVisible(DiscoverUI.LAST_UPDATE_FIELD);
         return getTextElement(DiscoverUI.LAST_UPDATE_FIELD);
+    }
+
+    public void inputLinkPreviewToDescription(String link){
+        waitToElementVisible(DiscoverUI.CARD_DESCRIPTION_TEXTAREA);
+        driver.findElement(By.xpath(DiscoverUI.CARD_DESCRIPTION_TEXTAREA)).sendKeys(Keys.ENTER);
+        sendKeyToElement(DiscoverUI.CARD_DESCRIPTION_TEXTAREA, link);
+        driver.findElement(By.xpath(DiscoverUI.CARD_DESCRIPTION_TEXTAREA)).sendKeys(Keys.ENTER);
+    }
+
+    public boolean isLinkPreviewDisplayed(){
+        waitToElementVisible(DiscoverUI.LINK_PREVIEW_THUMBNAIL_IMG);
+        return isElementDisplayed(DiscoverUI.LINK_PREVIEW_THUMBNAIL_IMG);
+    }
+
+    public void backToHomePage(){
+        waitToElementVisible(DiscoverUI.EMMA_LOGO);
+        clickToElement(DiscoverUI.EMMA_LOGO);
+    }
+
+    public void clickToCreateBoard(){
+        waitToElementVisible(DiscoverUI.CREATE_NEW_BUTTON);
+        clickToElement(DiscoverUI.CREATE_NEW_BUTTON);
+
+        waitToElementVisible(DiscoverUI.CREATE_NEW_BOARD_BUTTON);
+        clickToElement(DiscoverUI.CREATE_NEW_BOARD_BUTTON);
+    }
+
+    public void selectFirstThreeCards(){
+        waitToElementVisible(DiscoverUI.SELECT_CARD_BUTTON, first);
+        clickToElement(DiscoverUI.SELECT_CARD_BUTTON, first);
+        Constants.FIRST_CARD_TITLE_SELECTED = getTextElement(DiscoverUI.SELECTED_CARD_TITLE, first);
+        clickToElement(DiscoverUI.SELECT_CARD_BUTTON, second);
+        Constants.SENCOND_CARD_TITLE_SELECTED = getTextElement(DiscoverUI.SELECTED_CARD_TITLE,second);
+        clickToElement(DiscoverUI.SELECT_CARD_BUTTON, third);
+        Constants.THIRD_CARD_TITLE_SELECTED = getTextElement(DiscoverUI.SELECTED_CARD_TITLE, third);
+    }
+
+    public void clickToAddCardsButton(){
+        waitToElementVisible(DiscoverUI.ADD_CARD_TO_BOARD_BUTTON);
+        clickToElement(DiscoverUI.ADD_CARD_TO_BOARD_BUTTON);
+    }
+
+    public void clickToAddCardSelected(){
+        sleepInSeconds(1);
+        waitToElementClickable(DiscoverUI.ADD_CARD_SELECTED_BUTTON);
+        clickToElement(DiscoverUI.ADD_CARD_SELECTED_BUTTON);
+    }
+
+    public String getTitleFirstCardSelected(){
+        waitToElementVisible(DiscoverUI.SELECTED_CARD_TITLE, first);
+        return getTextElement(DiscoverUI.SELECTED_CARD_TITLE, first);
+    }
+
+    public String getTitleSecondCardSelected(){
+        waitToElementVisible(DiscoverUI.SELECTED_CARD_TITLE,second);
+        return getTextElement(DiscoverUI.SELECTED_CARD_TITLE, second);
+    }
+
+    public String getTitleThirdCardSelected(){
+        waitToElementVisible(DiscoverUI.SELECTED_CARD_TITLE, third);
+        return getTextElement(DiscoverUI.SELECTED_CARD_TITLE, third);
     }
 }

@@ -9,9 +9,18 @@ public class Constants {
     public static final String EMAIL_WHIZZZ = "test.whizz@emma-sleep.com";
     public static final String PASSWORD_WHIZZZ = "Sdfgukh4578fdsbc!)(";
     public static final String MICROSOFT_LOGIN_TITLE = "Sign in to your account";
-    public static final String EMMA_WHIZZZ_TITLE = "Emma Whizzz";
+    public static final String EMMA_WHIZZZ_TITLE = "Emma Whizzz - Discover";
+    public static final String LINK_PREVIEW = "https://whizzz.emmaint.snoozedev.com/share/card/hanoi-to-close-coffee-shops-on-train-street-iYKrR5r";
 
     //TOAST MESSAGE
     public static final String TOAST_MSG_CONTRIBUTOR_UPDATE = "Contributor(s) have been updated";
     public static final String TOAST_MSG_CARD_CREATED = "Card has been successfully created";
+    public static final String TOAST_MSG_BOARD_CREATED = "New board has been successfully created.";
+
+    public static final String POC_OR_CONTRIBUTOR_NAME = "Minh Tam Nguyen";
+
+    //SELECTED CARD TITLE
+    public static String FIRST_CARD_TITLE_SELECTED;
+    public static String SENCOND_CARD_TITLE_SELECTED;
+    public static String THIRD_CARD_TITLE_SELECTED;
 }
