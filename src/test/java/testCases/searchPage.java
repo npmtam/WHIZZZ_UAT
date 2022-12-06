@@ -52,7 +52,7 @@ public class searchPage extends AbstractTest {
         discoverPage.clickToSurveyIfAvailable();
     }
 
-    @Test()
+//    @Test()
     public void TC02_Create_A_Card(){
         log.info("TC02 - Create a new card");
         discoverPage.clickToCreateCard();

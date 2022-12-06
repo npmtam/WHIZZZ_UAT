@@ -26,6 +26,8 @@ public class DiscoverUI {
     public static final String TOAST_MESSAGE_CONTENT = "//div[@class='ant-notification-notice-message']";
     public static final String REVIEW_INTERVAL_DROPDOWN = "//div[contains(@class, 'dropdown-current-text')]";
     public static final String REVIEW_INTERVAL_OPTIONS = "//ul[contains(@class,'slim-scrollbar')]/li/button";
+    public static final String EXPAND_POC_SECTION = "(//i[@aria-label='icon: right'])[3]";
+    public static final String EXPAND_TAG_SECTION = "(//i[@aria-label='icon: right'])[4]";
 
     //PREVIEW
     public static final String NUMBER_OF_CONTRIBUTOR = "//div[contains(@class, 'mt-3')]/p[contains(@class,'text-gray-80')]";
@@ -34,6 +36,7 @@ public class DiscoverUI {
     public static final String LAST_UPDATE_FIELD = "//div[@class='flex gap-4 items-center']/div";
     public static final String TAG_FIELD_IN_DETAILS_PAGE = "//div[@class='py-1 px-4']";
     public static final String LINK_PREVIEW_THUMBNAIL_IMG = "//img[contains(@class, 'no-media-preview')]";
+
 
     //CREATE BOARD
     public static final String ADD_CARD_TO_BOARD_BUTTON = "//button[text()='Add Cards']";

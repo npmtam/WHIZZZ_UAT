@@ -58,6 +58,8 @@ public class DiscoverPage extends AbstractPage {
     }
 
     public void assignPOC(String pocName){
+        waitToElementVisible(DiscoverUI.EXPAND_POC_SECTION);
+        clickToElement(DiscoverUI.EXPAND_POC_SECTION);
         waitToElementVisible(DiscoverUI.POC_BUTTON);
         clickToElement(DiscoverUI.POC_BUTTON);
         waitToElementVisible(DiscoverUI.POC_SEARCH_BAR);
@@ -69,6 +71,8 @@ public class DiscoverPage extends AbstractPage {
     }
 
     public void addTag(String tagName){
+        waitToElementVisible(DiscoverUI.EXPAND_TAG_SECTION);
+        clickToElement(DiscoverUI.EXPAND_TAG_SECTION);
         waitToElementVisible(DiscoverUI.ADD_TAG_FIELD);
         scrollToElement(DiscoverUI.ADD_TAG_FIELD);
         sendKeyToElement(DiscoverUI.ADD_TAG_FIELD, tagName);
