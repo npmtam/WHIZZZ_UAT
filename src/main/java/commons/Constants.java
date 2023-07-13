@@ -14,8 +14,8 @@ public class Constants {
 
     //TOAST MESSAGE
     public static final String TOAST_MSG_CONTRIBUTOR_UPDATE = "Contributor(s) have been updated";
-    public static final String TOAST_MSG_CARD_CREATED = "Card has been successfully created";
-    public static final String TOAST_MSG_BOARD_CREATED = "New board has been successfully created.";
+    public static final String TOAST_MSG_CARD_CREATED = "for creating a card";
+    public static final String TOAST_MSG_BOARD_CREATED = "for creating a board";
 
     public static final String POC_OR_CONTRIBUTOR_NAME = "Minh Tam Nguyen";
 

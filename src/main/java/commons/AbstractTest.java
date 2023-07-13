@@ -46,11 +46,7 @@ public class AbstractTest {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--disable-notifications");
-				chromeOptions.addArguments("--remote-debugging-port=9222");
-				chromeOptions.addArguments("--disable-default-apps");
-                chromeOptions.setExperimentalOption("useAutomationExtension", false);
-                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-				chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                chromeOptions.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "chrome_headless":

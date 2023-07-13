@@ -124,11 +124,19 @@ public class DiscoverPage extends AbstractPage {
         return getTextElement(DiscoverUI.TOAST_MESSAGE_CONTENT);
     }
 
+    public String getGamificationToastMsg(){
+        waitToElementVisible(DiscoverUI.GAMIFICATION_TOAST_MESSAGE);
+        return getTextElement(DiscoverUI.GAMIFICATION_TOAST_MESSAGE);
+    }
     public String getTagNameDetailsPage(){
         waitToElementVisible(DiscoverUI.TAG_FIELD_IN_DETAILS_PAGE);
         return getTextElement(DiscoverUI.TAG_FIELD_IN_DETAILS_PAGE);
     }
 
+    public String getTagNamePublishedPage(){
+        waitToElementVisible(DiscoverUI.TAG_NAME_IN_PUBLISHED_PAGE);
+        return getTextElement(DiscoverUI.TAG_NAME_IN_PUBLISHED_PAGE);
+    }
     public String getLastUpdate(){
         waitToElementVisible(DiscoverUI.LAST_UPDATE_FIELD);
         return getTextElement(DiscoverUI.LAST_UPDATE_FIELD);

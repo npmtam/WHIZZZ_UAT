@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -307,5 +308,17 @@ public class AbstractPage {
 
         String currentDate = currentDay + " " + currentMonth + " " + currentYear;
         return currentDate;
+    }
+
+    public List<String> getTextListElements(String locator) {
+        String textElement = null;
+        List<String> allText = new ArrayList<>();
+        elements = driver.findElements(By.xpath(locator));
+        for (WebElement item : elements) {
+            textElement = item.getText();
+            System.out.println(textElement);
+            allText.add(textElement);
+        }
+        return allText;
     }
 }

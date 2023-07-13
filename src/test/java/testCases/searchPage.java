@@ -26,33 +26,29 @@ public class searchPage extends AbstractTest {
         driver = getBrowserDriver(browserName);
         abstractPage = new AbstractPage(driver);
         driver.get(Constants.EMMA_WHIZZZ_DEV);
-        abstractPage.isElementDisplayed("//button");
         loginPage = PageGeneratorManager.getLoginPage(driver);
         discoverPage = PageGeneratorManager.getDiscoverPage(driver);
         Faker faker = new Faker();
         cardName = faker.book().title();
         cardDescription = faker.book().publisher();
         tag = "selenium";
-
     }
 
     @Test
     public void TC01_Login_To_System(){
         log.info("Login to the system");
-        loginPage.clickToLoginButton();
-        loginPage.switchToLoginWindows();
         loginPage.inputEmail(Constants.EMAIL_WHIZZZ);
         loginPage.clickToSubmitBtn();
         loginPage.inputPassword(Constants.PASSWORD_WHIZZZ);
         loginPage.clickToSubmitBtn();
         loginPage.clickToSubmitBtn();
-        loginPage.switchBackToWhizzzWindow();
+        loginPage.clickToLoginButton();
         verifyTrue(abstractPage.isElementDisplayed("//span[text()='Create New']/ancestor::button"));
         log.info("Bypass the survey if it's displayed");
         discoverPage.clickToSurveyIfAvailable();
     }
 
-//    @Test()
+    @Test()
     public void TC02_Create_A_Card(){
         log.info("TC02 - Create a new card");
         discoverPage.clickToCreateCard();
@@ -80,12 +76,12 @@ public class searchPage extends AbstractTest {
 
         log.info("TC02 - Click to publish the card");
         discoverPage.clickToPublishButton();
-        log.info("TC02 - Verify toast message");
-        verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_CARD_CREATED);
+        log.info("TC02 - Verify gamification toast message");
+        verifyEquals(discoverPage.getGamificationToastMsg(), Constants.TOAST_MSG_CARD_CREATED);
         log.info("TC02 - Verify components in the card published");
         Assert.assertEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
         Assert.assertEquals(discoverPage.getNameOfPOC(), Constants.POC_OR_CONTRIBUTOR_NAME);
-        Assert.assertEquals(discoverPage.getTagNameDetailsPage(), tag);
+        Assert.assertEquals(discoverPage.getTagNamePublishedPage(), tag);
         Assert.assertTrue(discoverPage.getLastUpdate().contains(discoverPage.getCurrentDate()));
         Assert.assertTrue(discoverPage.isLinkPreviewDisplayed());
     }
@@ -118,8 +114,8 @@ public class searchPage extends AbstractTest {
         System.out.println(discoverPage.getTitleSecondCardSelected());
         Assert.assertEquals(discoverPage.getTitleThirdCardSelected(), Constants.THIRD_CARD_TITLE_SELECTED);
         System.out.println(discoverPage.getTitleThirdCardSelected());
-        log.info("TC03 - Verify Toast Message");
-        verifyEquals(discoverPage.getToastMessage(), Constants.TOAST_MSG_BOARD_CREATED);
+        log.info("TC03 - Verify gamification toast message");
+        verifyEquals(discoverPage.getGamificationToastMsg(), Constants.TOAST_MSG_BOARD_CREATED);
         log.info("TC03 - Verify board components");
         verifyTrue(discoverPage.isLinkPreviewDisplayed());
         Assert.assertEquals(discoverPage.getNumberOfContributors(), "+1 contributor");
