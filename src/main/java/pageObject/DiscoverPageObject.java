@@ -7,16 +7,46 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import pageUI.DiscoverUI;
 
-public class DiscoverPage extends AbstractPage {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
+public class DiscoverPageObject extends AbstractPage {
     private WebDriver driver;
     private String first,second,third;
+    private String configFileName;
+    private Properties properties;
+    private FileInputStream configFile;
+    private String rootFolder = System.getProperty("user.dir");
 
-    public DiscoverPage(WebDriver driver){
+    public DiscoverPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;
+        configFileName = "config.properties";
+        properties = new Properties();
+        try {
+            configFile = new FileInputStream(rootFolder + File.separator + configFileName);
+            properties.load(configFile);
+            configFile.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         first = "1";
         second = "2";
         third = "3";
+    }
+
+    public String getAccount(String keyword){
+        if(keyword.equalsIgnoreCase("email")){
+            return properties.getProperty("email");
+        } else if (keyword.equalsIgnoreCase("password")){
+            return properties.getProperty("password");
+        }
+        return null;
     }
 
     public void clickToSurveyIfAvailable(){

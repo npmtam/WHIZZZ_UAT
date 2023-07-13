@@ -1,17 +1,17 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageObject.DiscoverPage;
-import pageObject.LoginPage;
+import pageObject.DiscoverPageObject;
+import pageObject.LoginPageObject;
 
 public class PageGeneratorManager {
 
-    public static LoginPage getLoginPage(WebDriver driver){
-        return new LoginPage(driver);
+    public static LoginPageObject getLoginPage(WebDriver driver){
+        return new LoginPageObject(driver);
     }
 
-    public static DiscoverPage getDiscoverPage(WebDriver driver){
-        return new DiscoverPage(driver);
+    public static DiscoverPageObject getDiscoverPage(WebDriver driver){
+        return new DiscoverPageObject(driver);
     }
 
 }

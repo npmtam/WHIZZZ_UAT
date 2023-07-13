@@ -6,8 +6,6 @@ public class Constants {
 
     public static final String EMMA_WHIZZZ_DEV = "https://whizzz.emmaint.snoozedev.com/";
 
-    public static final String EMAIL_WHIZZZ = "test.whizz@emma-sleep.com";
-    public static final String PASSWORD_WHIZZZ = "Sdfgukh4578fdsbc!)(";
     public static final String MICROSOFT_LOGIN_TITLE = "Sign in to your account";
     public static final String EMMA_WHIZZZ_TITLE = "Emma Whizzz - Discover";
     public static final String LINK_PREVIEW = "https://whizzz.emmaint.snoozedev.com/share/card/hanoi-to-close-coffee-shops-on-train-street-iYKrR5r";

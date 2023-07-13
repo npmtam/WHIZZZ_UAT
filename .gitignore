@@ -28,3 +28,5 @@ dist/
 vendor/
 *Gopkg.lock
 /logs/
+.properties
+/config.properties

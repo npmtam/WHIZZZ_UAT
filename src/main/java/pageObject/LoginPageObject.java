@@ -5,10 +5,10 @@ import commons.Constants;
 import org.openqa.selenium.WebDriver;
 import pageUI.LoginUI;
 
-public class LoginPage extends AbstractPage {
+public class LoginPageObject extends AbstractPage {
     private WebDriver driver;
 
-    public LoginPage(WebDriver driver){
+    public LoginPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;
     }
